@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Blog-Api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:9719"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "注册",
+        "operationId": "registerUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "admin1"
+                  },
+                  "password": {
+                    "example": "Abcd1234!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "details": {
+                      "acknowledged": true,
+                      "insertedId": "651e7d340de9ad5ae24a6085"
+                    },
+                    "message": "success"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/auth-sign": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "登录",
+        "operationId": "loginUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "admin123"
+                  },
+                  "password": {
+                    "example": "abcD1234!!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "details": {
+                      "authorization": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFlNjE5OTIxZTZiNjMwYzMwYTExNGIiLCJ1c2VybmFtZSI6ImFkbWluMSIsImlhdCI6MTY5NjQ5NjM2MSwiZXhwIjoxNjk3MTAxMTYxfQ.HR8xLOiCK17sWrAzF7BBXjROjLhJU7hRHZP2sVutCqw",
+                        "expires": "2023-10-12T08:59:21.388Z"
+                      },
+                      "userInfo": {
+                        "_id": "651e619921e6b630c30a114b",
+                        "username": "admin1"
+                      }
+                    },
+                    "message": "success"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    }
+  }
+}

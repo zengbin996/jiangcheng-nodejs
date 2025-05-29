@@ -1,13 +1,15 @@
-const { Joi, validate } = require('express-validation')
+const { Joi, validate } = require('express-validation');
 
 const postPhotos = validate({
   body: Joi.object({
-    url: Joi.array().required(),
-    weight: Joi.number().min(0).max(10).default(5), //权重: 0-10, 默认 0
-    location: Joi.string(), //位置
-    label: Joi.array(), //标签
+    files: Joi.array().required(), //文件
+    weight: Joi.number().min(0).max(10).default(5), //权重: 0-10
+    area: Joi.array(), //地区
+    latLon: Joi.string(), //经纬度
+    tag: Joi.array(), //标签
+    time: Joi.string(), //时间
   }),
-})
+});
 
 const patchPhotos = validate({
   body: Joi.object({
@@ -17,13 +19,13 @@ const patchPhotos = validate({
     location: Joi.string(),
     label: Joi.array(), //标签
   }),
-})
+});
 
 const deletePhotos = validate({
   body: Joi.object({
     id: Joi.string().required(),
   }),
-})
+});
 
 const getPhotos = validate({
   body: Joi.object({
@@ -33,11 +35,11 @@ const getPhotos = validate({
     location: Joi.string(),
     label: Joi.array(),
   }),
-})
+});
 
 module.exports = {
   postPhotos,
   patchPhotos,
   deletePhotos,
   getPhotos,
-}
+};
